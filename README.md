@@ -37,4 +37,5 @@ __Warning__: you need the api server running in the same host.
 - Style
 - Security
 - Dev/Test/Prod configuration
+- Client side validations
 - ...
