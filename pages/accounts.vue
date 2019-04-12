@@ -24,7 +24,8 @@
                   <v-container grid-list-md>
                     <v-layout wrap>
                       <v-flex xs12 sm12 md12>
-                        <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
+                        <v-text-field v-model="editedItem.email" label="E-mail"
+                          :rules="[rules.required, rules.email]"></v-text-field>
                       </v-flex>
                     </v-layout>
                   </v-container>
@@ -91,7 +92,7 @@
           sortable: false,
           value: 'id'
         },
-        { text: 'Email', value: 'email', align: 'left' },
+        { text: 'E-mail', value: 'email', align: 'left' },
       ],
       api_base: "http://localhost:5000/api/v1",
       accounts: [],
@@ -101,6 +102,13 @@
       },
       defaultItem: {
         email: ''
+      },
+      rules: {
+        required: value => !!value || 'Required.',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        }
       }
     }),
 
